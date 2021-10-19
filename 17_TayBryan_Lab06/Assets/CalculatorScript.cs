@@ -12,11 +12,20 @@ public class CalculatorScript : MonoBehaviour
 
     float SGDUSD = 0.74f;
     float SGDJPY = 82.78f;
+    float SGDRM = 3.08f;
+    float SGDEUR = 0.63f;
+    float SGDKRW = 881.54f;
+    float SGDTWD = 20.73f;
 
     public Text Debug;
 
     public Toggle toggleUSDollar;
     public Toggle toggleJapYen;
+    // added other currencies 
+    public Toggle toggleMalaysiaRM;
+    public Toggle toggleEuropianEuro;
+    public Toggle toggleKoreanKRW;
+    public Toggle toggleTaiwanTWD;
 
     public InputField AmountInput;
     public InputField ConvertedAmountInput;
@@ -24,7 +33,11 @@ public class CalculatorScript : MonoBehaviour
     public void Start()
     {
         toggleUSDollar.isOn = false; 
-        toggleJapYen.isOn = false;      
+        toggleJapYen.isOn = false;
+        toggleMalaysiaRM.isOn = false;
+        toggleEuropianEuro.isOn = false;
+        toggleKoreanKRW.isOn = false;
+        toggleTaiwanTWD.isOn = false;
     }
 
     public void Update()
@@ -40,6 +53,22 @@ public class CalculatorScript : MonoBehaviour
         else if (toggleUSDollar.isOn == true)
         {
             ToggleValue = 1;
+        }
+        else if (toggleMalaysiaRM.isOn == true)
+        {
+            ToggleValue = 4;
+        }
+        else if (toggleEuropianEuro.isOn == true)
+        {
+            ToggleValue = 5; 
+        }
+        else if (toggleKoreanKRW.isOn == true)
+        {
+            ToggleValue = 6; 
+        }
+        else if (toggleTaiwanTWD.isOn == true)
+        {
+            ToggleValue = 7; 
         }
         else
         {
@@ -77,6 +106,55 @@ public class CalculatorScript : MonoBehaviour
                 Debug.text = "Please enter a valid input";
             }
             
+        }
+        else if (ToggleValue == 4)
+        {
+            try
+            {
+                amount = float.Parse(AmountInput.text);
+                ConvertedAmountInput.text = "RM" + (amount * SGDRM);
+            }
+            catch
+            {
+                Debug.text = "Please enter a valid input";
+            }
+           
+        }
+        else if (ToggleValue == 5)
+        {
+            try
+            {
+                amount = float.Parse(AmountInput.text);
+                ConvertedAmountInput.text = "€" + (amount * SGDEUR);
+            } 
+            catch
+            {
+                Debug.text = "Please enter a valid input";
+            }
+        }
+        else if (ToggleValue == 6)
+        {
+            try
+            {
+                amount = float.Parse(AmountInput.text);
+                ConvertedAmountInput.text = "₩" + (amount * SGDKRW);
+            }
+            catch
+            {
+                Debug.text = "Please enter a valid input";
+            }
+        }
+        else if (ToggleValue == 7)
+        {
+            try
+            {
+                amount = float.Parse(AmountInput.text);
+                ConvertedAmountInput.text = "NT$" + (amount * SGDTWD);
+            }
+            catch
+            {
+                Debug.text = "Please enter a valid input";
+            }
         }
         else if(ToggleValue == 3)
         {
